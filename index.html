@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fútbol DT</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%23eef2e8%22 stroke=%22%231c2620%22 stroke-width=%222%22/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" crossorigin src="./assets/index-BeoKv4cD.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/CanvasPool-D8XHBOKl.js">
+    <link rel="modulepreload" crossorigin href="./assets/canvasUtils-C5X0a6iY.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderTargetSystem-CRJ3973y.js">
+    <link rel="modulepreload" crossorigin href="./assets/getTextureBatchBindGroup-Be6fdcKb.js">
+    <link rel="modulepreload" crossorigin href="./assets/getTexelRangeRects-C0nqOKeC.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-BBaQv03d.css">
+  </head>
+  <body>
+    <main class="layout">
+      <section class="field" aria-label="Partido">
+        <div id="pitch" class="pitch"></div>
+        <div id="call-banner" class="call-banner" hidden></div>
+        <div id="shot-view" class="shot-view" hidden></div>
+        <div id="replay-badge" class="replay-badge" hidden>Repetición</div>
+      </section>
+
+      <aside class="notebook" aria-label="Libreta del DT">
+        <header id="scoreboard" class="scoreboard"></header>
+
+        <div class="controls" role="group" aria-label="Velocidad">
+          <button type="button" data-speed="0" aria-pressed="false">Pausa</button>
+          <button type="button" data-speed="1" aria-pressed="true">1×</button>
+          <button type="button" data-speed="2" aria-pressed="false">2×</button>
+          <button type="button" data-speed="4" aria-pressed="false">4×</button>
+          <button type="button" data-speed="16" aria-pressed="false">16×</button>
+        </div>
+        <div class="controls">
+          <button type="button" id="thinking-toggle" aria-pressed="false" aria-controls="thinking">
+            Ver decisiones de los jugadores <kbd>D</kbd>
+          </button>
+          <button type="button" id="camera-toggle" aria-pressed="false">Cámara sigue la pelota <kbd>C</kbd></button>
+          <button type="button" id="report-open">Informe del partido <kbd>I</kbd></button>
+          <button type="button" id="replay-last">Repetir los últimos 6 s <kbd>X</kbd></button>
+          <button type="button" id="auto-replay" aria-pressed="true">Repetir los goles solo <kbd>R</kbd></button>
+          <label class="ball-choice"
+            >Pelota
+            <select id="ball-design"></select
+          ></label>
+          <label class="ball-choice"
+            >Luz
+            <select id="light-mode"></select
+          ></label>
+          <label class="ball-choice"
+            >Clima
+            <select id="weather"></select
+          ></label>
+        </div>
+
+        <section id="thinking" class="panel thinking" aria-label="Qué piensa el jugador con la pelota" hidden></section>
+
+        <section id="halftime" class="panel halftime" aria-live="polite" hidden></section>
+        <section id="tactics" class="panel" aria-labelledby="tactics-title"></section>
+        <section id="squad" class="panel" aria-label="Plantel y cambios"></section>
+        <section id="stats" class="panel" aria-label="Estadísticas"></section>
+        <section id="highlights" class="panel" aria-label="Repeticiones"></section>
+        <section class="panel feed-panel" aria-labelledby="feed-title">
+          <h2 id="feed-title">Relato</h2>
+          <ol id="feed" class="feed"></ol>
+        </section>
+
+        <form id="new-match" class="panel new-match">
+          <h2>Nuevo partido</h2>
+          <label
+            >Modalidad
+            <select name="mode"></select
+          ></label>
+          <label>Semilla <input name="seed" type="number" min="1" step="1" /></label>
+          <button type="submit">Jugar otro partido</button>
+        </form>
+      </aside>
+    </main>
+    <dialog id="tactics-board" class="board" aria-labelledby="board-title"></dialog>
+    <dialog id="match-report" class="board report" aria-labelledby="report-title"></dialog>
+  </body>
+</html>
