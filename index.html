@@ -14,13 +14,13 @@
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;700&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="./assets/index-ilyNHQPg.js"></script>
+    <script type="module" crossorigin src="./assets/index-C501GowA.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/CanvasPool-D8XHBOKl.js">
     <link rel="modulepreload" crossorigin href="./assets/canvasUtils-C5X0a6iY.js">
     <link rel="modulepreload" crossorigin href="./assets/RenderTargetSystem-CRJ3973y.js">
     <link rel="modulepreload" crossorigin href="./assets/getTextureBatchBindGroup-Be6fdcKb.js">
     <link rel="modulepreload" crossorigin href="./assets/getTexelRangeRects-C0nqOKeC.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-dpZl5so_.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-C5LoSoT4.css">
   </head>
   <body>
     <main class="stage" aria-label="Partido">
@@ -73,6 +73,8 @@
       </header>
 
       <section id="halftime" class="panel halftime" aria-live="polite" hidden></section>
+      <!-- La presentación antes del pitazo inicial: los dos onces, como en la tele. -->
+      <section id="lineups" class="lineups" aria-label="Formaciones" hidden></section>
       <section id="thinking" class="panel thinking" aria-label="Qué piensa el jugador con la pelota" hidden></section>
 
       <!-- Lo último que pasó, abajo a la izquierda (el relato completo está en su cajón). -->
@@ -168,6 +170,7 @@
         <section class="panel settings">
           <h2>Ajustes</h2>
           <button type="button" id="auto-replay" aria-pressed="true">Repetir los goles solo <kbd>R</kbd></button>
+          <div id="view-options" class="view-options"></div>
           <label class="ball-choice"
             >Pelota
             <select id="ball-design"></select
@@ -187,7 +190,8 @@
           <p class="hint">
             Atajos: <kbd>Espacio</kbd> pausa · <kbd>0</kbd>–<kbd>4</kbd> velocidad · <kbd>T</kbd> pizarra ·
             <kbd>B</kbd> cambios · <kbd>E</kbd> estadísticas · <kbd>I</kbd> informe · <kbd>D</kbd> decisiones ·
-            <kbd>C</kbd> cámara · <kbd>X</kbd> repetir · <kbd>F</kbd> pantalla completa · <kbd>Esc</kbd> cerrar
+            <kbd>C</kbd> cámara · <kbd>X</kbd> repetir · <kbd>F</kbd> pantalla completa · <kbd>M</kbd> sonido ·
+            <kbd>G</kbd> energía · <kbd>N</kbd> nombres · <kbd>Esc</kbd> cerrar
           </p>
         </section>
       </aside>
