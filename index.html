@@ -14,13 +14,13 @@
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;700&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="./assets/index-AYB84lY1.js"></script>
+    <script type="module" crossorigin src="./assets/index-spfKcRCj.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/CanvasPool-D8XHBOKl.js">
     <link rel="modulepreload" crossorigin href="./assets/canvasUtils-C5X0a6iY.js">
     <link rel="modulepreload" crossorigin href="./assets/RenderTargetSystem-CRJ3973y.js">
     <link rel="modulepreload" crossorigin href="./assets/getTextureBatchBindGroup-Be6fdcKb.js">
     <link rel="modulepreload" crossorigin href="./assets/getTexelRangeRects-C0nqOKeC.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-D05NmUuA.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-iHZxkcTy.css">
   </head>
   <body>
     <main class="layout">
@@ -97,10 +97,14 @@
           ></label>
           <label>Semilla <input name="seed" type="number" min="1" step="1" /></label>
           <button type="submit">Jugar otro partido</button>
+          <p class="hint">O dirigí al local una temporada entera del Campeonato Uruguayo:</p>
+          <button type="button" id="season-start">Empezar temporada</button>
+          <button type="button" id="season-open" hidden>Ver temporada</button>
         </form>
       </aside>
     </main>
     <dialog id="tactics-board" class="board" aria-labelledby="board-title"></dialog>
     <dialog id="match-report" class="board report" aria-labelledby="report-title"></dialog>
+    <dialog id="season" class="board season" aria-label="Temporada"></dialog>
   </body>
 </html>
