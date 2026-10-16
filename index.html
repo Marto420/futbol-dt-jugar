@@ -14,42 +14,87 @@
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;700&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="./assets/index-DN3Fgdbc.js"></script>
+    <script type="module" crossorigin src="./assets/index-jbCnNqdF.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/CanvasPool-D8XHBOKl.js">
     <link rel="modulepreload" crossorigin href="./assets/canvasUtils-C5X0a6iY.js">
     <link rel="modulepreload" crossorigin href="./assets/RenderTargetSystem-CRJ3973y.js">
     <link rel="modulepreload" crossorigin href="./assets/getTextureBatchBindGroup-Be6fdcKb.js">
     <link rel="modulepreload" crossorigin href="./assets/getTexelRangeRects-C0nqOKeC.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-iHZxkcTy.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-BnjpRNOi.css">
   </head>
   <body>
-    <main class="layout">
-      <section class="field" aria-label="Partido">
-        <div id="pitch" class="pitch"></div>
-        <div id="call-banner" class="call-banner" hidden></div>
-        <div id="shot-view" class="shot-view" hidden></div>
-        <div id="replay-badge" class="replay-badge" hidden>
-          Repetición <button type="button" id="replay-skip">Saltar <kbd>Espacio</kbd></button>
-        </div>
-      </section>
+    <main class="stage" aria-label="Partido">
+      <div id="pitch" class="pitch"></div>
+      <div id="call-banner" class="call-banner" hidden></div>
+      <div id="shot-view" class="shot-view" hidden></div>
+      <div id="replay-badge" class="replay-badge" hidden>
+        Repetición <button type="button" id="replay-skip">Saltar <kbd>Espacio</kbd></button>
+      </div>
 
-      <aside class="notebook" aria-label="Libreta del DT">
+      <!-- Arriba: la velocidad, el marcador y la vista. -->
+      <header class="hud-top">
+        <div class="hud-group" role="group" aria-label="Velocidad">
+          <button type="button" data-speed="0" aria-pressed="false" title="Pausa (Espacio o 0)">Pausa</button>
+          <button type="button" data-speed="1" aria-pressed="true" title="Tecla 1">1×</button>
+          <button type="button" data-speed="2" aria-pressed="false" title="Tecla 2">2×</button>
+          <button type="button" data-speed="4" aria-pressed="false" title="Tecla 3">4×</button>
+          <button type="button" data-speed="16" aria-pressed="false" title="Tecla 4">16×</button>
+        </div>
         <header id="scoreboard" class="scoreboard"></header>
-
-        <div class="controls" role="group" aria-label="Velocidad">
-          <button type="button" data-speed="0" aria-pressed="false">Pausa</button>
-          <button type="button" data-speed="1" aria-pressed="true">1×</button>
-          <button type="button" data-speed="2" aria-pressed="false">2×</button>
-          <button type="button" data-speed="4" aria-pressed="false">4×</button>
-          <button type="button" data-speed="16" aria-pressed="false">16×</button>
+        <div class="hud-group hud-view" role="group" aria-label="Vista">
+          <button type="button" id="camera-toggle" aria-pressed="false">Cámara <kbd>C</kbd></button>
+          <button type="button" id="replay-last">Repetir <kbd>X</kbd></button>
+          <button type="button" id="fullscreen-toggle" aria-pressed="false">Pantalla completa <kbd>F</kbd></button>
         </div>
-        <div class="controls">
+      </header>
+
+      <section id="halftime" class="panel halftime" aria-live="polite" hidden></section>
+      <section id="thinking" class="panel thinking" aria-label="Qué piensa el jugador con la pelota" hidden></section>
+
+      <!-- Lo último que pasó, abajo a la izquierda (el relato completo está en su cajón). -->
+      <ol id="ticker" class="hud-ticker" aria-hidden="true"></ol>
+
+      <!-- Abajo: las indicaciones desde el costado y la libreta del DT. -->
+      <div class="hud-bottom">
+        <div id="shouts" class="hud-shouts" role="group" aria-label="Indicaciones desde el costado"></div>
+        <nav class="hud-dock" aria-label="Libreta del DT">
+          <button type="button" id="board-open">Pizarra <kbd>T</kbd></button>
+          <button type="button" data-drawer="tactics" aria-pressed="false">Táctica</button>
+          <button type="button" data-drawer="squad" aria-pressed="false">Cambios <kbd>B</kbd></button>
+          <button type="button" data-drawer="stats" aria-pressed="false">Estadísticas <kbd>E</kbd></button>
+          <button type="button" data-drawer="feed" aria-pressed="false">Relato</button>
+          <button type="button" data-drawer="highlights" aria-pressed="false">Repeticiones</button>
+          <button type="button" id="report-open">Informe <kbd>I</kbd></button>
           <button type="button" id="thinking-toggle" aria-pressed="false" aria-controls="thinking">
-            Ver decisiones de los jugadores <kbd>D</kbd>
+            Decisiones <kbd>D</kbd>
           </button>
-          <button type="button" id="camera-toggle" aria-pressed="false">Cámara sigue la pelota <kbd>C</kbd></button>
-          <button type="button" id="report-open">Informe del partido <kbd>I</kbd></button>
-          <button type="button" id="replay-last">Repetir los últimos 6 s <kbd>X</kbd></button>
+          <button type="button" data-drawer="settings" aria-pressed="false">Ajustes</button>
+          <button type="button" data-drawer="menu" aria-pressed="false" class="dock-menu">Partido · Temporada</button>
+        </nav>
+      </div>
+
+      <!-- Los cajones de la libreta: uno a la vez, por encima de la cancha. -->
+      <aside class="drawer" data-drawer-panel="tactics" aria-label="Táctica" hidden>
+        <section id="tactics" class="panel" aria-labelledby="tactics-title"></section>
+      </aside>
+      <aside class="drawer" data-drawer-panel="squad" aria-label="Plantel y cambios" hidden>
+        <section id="squad" class="panel"></section>
+      </aside>
+      <aside class="drawer" data-drawer-panel="stats" aria-label="Estadísticas" hidden>
+        <section id="stats" class="panel"></section>
+      </aside>
+      <aside class="drawer" data-drawer-panel="feed" aria-label="Relato" hidden>
+        <section class="panel feed-panel" aria-labelledby="feed-title">
+          <h2 id="feed-title">Relato</h2>
+          <ol id="feed" class="feed"></ol>
+        </section>
+      </aside>
+      <aside class="drawer" data-drawer-panel="highlights" aria-label="Repeticiones" hidden>
+        <section id="highlights" class="panel"></section>
+      </aside>
+      <aside class="drawer" data-drawer-panel="settings" aria-label="Ajustes" hidden>
+        <section class="panel settings">
+          <h2>Ajustes</h2>
           <button type="button" id="auto-replay" aria-pressed="true">Repetir los goles solo <kbd>R</kbd></button>
           <label class="ball-choice"
             >Pelota
@@ -67,20 +112,14 @@
             >Pasto
             <select id="mow-pattern"></select
           ></label>
-        </div>
-
-        <section id="thinking" class="panel thinking" aria-label="Qué piensa el jugador con la pelota" hidden></section>
-
-        <section id="halftime" class="panel halftime" aria-live="polite" hidden></section>
-        <section id="tactics" class="panel" aria-labelledby="tactics-title"></section>
-        <section id="squad" class="panel" aria-label="Plantel y cambios"></section>
-        <section id="stats" class="panel" aria-label="Estadísticas"></section>
-        <section id="highlights" class="panel" aria-label="Repeticiones"></section>
-        <section class="panel feed-panel" aria-labelledby="feed-title">
-          <h2 id="feed-title">Relato</h2>
-          <ol id="feed" class="feed"></ol>
+          <p class="hint">
+            Atajos: <kbd>Espacio</kbd> pausa · <kbd>0</kbd>–<kbd>4</kbd> velocidad · <kbd>T</kbd> pizarra ·
+            <kbd>B</kbd> cambios · <kbd>E</kbd> estadísticas · <kbd>I</kbd> informe · <kbd>D</kbd> decisiones ·
+            <kbd>C</kbd> cámara · <kbd>X</kbd> repetir · <kbd>F</kbd> pantalla completa · <kbd>Esc</kbd> cerrar
+          </p>
         </section>
-
+      </aside>
+      <aside class="drawer" data-drawer-panel="menu" aria-label="Partido y temporada" hidden>
         <form id="new-match" class="panel new-match">
           <h2>Nuevo partido</h2>
           <label
