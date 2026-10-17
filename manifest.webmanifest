@@ -1,0 +1,13 @@
+{
+  "name": "Fútbol DT",
+  "short_name": "Fútbol DT",
+  "description": "Dirigí a tu equipo desde el costado: las fichas juegan solas y vos das las órdenes.",
+  "lang": "es",
+  "start_url": ".",
+  "scope": ".",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#0b0f0c",
+  "theme_color": "#0b0f0c",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
